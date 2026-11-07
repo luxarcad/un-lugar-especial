@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 
 import CelestialScene from './components/CelestialScene.jsx';
+import LunarGarden from './components/LunarGarden.jsx';
 import { letters, phrases } from './data/letters.js';
 
 const shapes = [
@@ -339,6 +340,13 @@ export default function App() {
             <span className="orbit-label">DOS ALMAS. UN INFINITO.</span>
           </div>
         </section>
+
+        {/* Jardin Lunar */}
+
+        <LunarGarden
+          letters={letters}
+          onOpenLetter={setActiveLetter}
+          reducedMotion={reducedMotion} />
 
         {/* CARTAS */}
 

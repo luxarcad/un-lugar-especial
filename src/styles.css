@@ -1408,3 +1408,316 @@ em {
     transition-duration: .01ms !important;
   }
 }
+
+/* Jardin Lunar */
+
+.lunar-garden {
+  position: relative;
+  isolation: isolate;
+  min-height: 910px;
+  overflow: hidden;
+  background: #080516;
+  border-block: 1px solid rgba(234, 173, 255, 0.11);
+}
+
+/* Nebulosas ambientales */
+.lunar-garden::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: -18%;
+  pointer-events: none;
+  background: 
+    radial-gradient(
+      ellipse at 54% 34%,
+      rgba(16, 93, 209, .12),
+      transparent 36%
+    ),
+    radial-gradient(
+      ellipse at 18% 58%,
+      rgba(66, 62, 168, .14),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 83% 67%,
+      rgba(227, 100, 168, .13),
+      transparent 44%
+    );
+
+  filter: blur(38px);
+  animation: gardenMist 16s ease-in-out infinite alternate;
+}
+
+/* Contenedor Three.js */
+.lunar-garden__scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.lunar-garden__scene canvas {
+  display: block;
+  touch-action: pan-y;
+}
+
+/* Viñeta cinematografica */
+
+.lunar-garden__scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: 
+    linear-gradient(
+      90deg,
+      rgba(8, 5, 22, .45),
+      transparent 28%,
+      transparent 72%,
+      rgba(8, 5, 22, .40)
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 5, 22, .32),
+      transparent 28%,
+      transparent 62%,
+      #080516 96%
+    );
+}
+
+/* Encabezado del jardin */
+
+.lunar-garden__intro {
+  position: absolute;
+  top: 82px;
+  left: clamp(24px, 7vw, 110px);
+  z-index: 3;
+
+  width: min(510px, calc(100% - 48px));
+  pointer-events: none;
+}
+
+.lunar-garden__intro .eyebrow svg {
+  color: #e4bdff;
+  flex-shrink: 0;
+}
+
+.lunar-garden__intro h2 {
+  font-family: 'Italiana', Georgia, serif;
+  font-size: clamp(55px, 6.2vw, 94px);
+  font-weight: 400;
+  letter-spacing: -.055em;
+  line-height: 1.02;
+  margin: 20px 0 18px;
+  text-shadow: 0 9px 55px #080516;
+}
+
+.lunar-garden__intro > p:last-child {
+  max-width: 380px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #c0b3d2;
+  text-shadow: 0 2px 17px #080516;
+}
+
+/* Panel de flores */
+.lunar-garden__legend {
+  position: absolute;
+  z-index: 4;
+  bottom: 78px;
+  left: clamp(24px, 7vw, 110px);
+  right: clamp(24px, 7vw, 110px);
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.lunar-garden__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #e9c7f0;
+  font-size: 10px;
+  letter-spacing: .24em;
+  font-weight: 700;
+}
+
+.lunar-garden__hint svg {
+  color: #ffd6a6;
+}
+
+.lunar-garden__letters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1230px;
+}
+
+/* Botones de cada flor */
+.garden-seed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 65px;
+  padding: 13px 16px;
+  color: #eee3f7;
+  background: rgba(30, 19, 49, .76);
+  border: 1px solid rgba(235, 193, 255, .17);
+  border-radius: 15px;
+  text-align: left;
+  backdrop-filter: blur(18px);
+
+  transition: 
+    transform .25s,
+    border-color .25s,
+    box-shadow .25s,
+    background .25s;
+}
+
+.garden-seed:hover,
+.garden-seed--active {
+  transform: translateY(-4px);
+  border-color: var(--seed-color);
+  background: rgba(62, 36, 84, .77);
+  box-shadow: 
+    0 8px 34px rgba(0, 0, 0, .24),
+    0 0 25px rgba(220, 139, 255, .12);
+}
+
+.garden-seed > svg:first-of-type {
+  flex-shrink: 0;
+  color: var(--seed-color);
+  filter: drop-shadow(0 0 8px var(--seed-color));
+}
+
+.garden-seed__number {
+  color: #988aab;
+  font-size: 10px;
+  letter-spacing: .12em;
+}
+
+.garden-seed__name {
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.garden-seed__arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: #b8a5c8;
+}
+
+/* Firma Inferior */
+
+.lunar-garden__signature {
+  position: absolute;
+  z-index: 3;
+  bottom: 30px;
+  left: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  color: #9585b1;
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Movimiento de la atmosfera */
+@keyframes gardenMist {
+  from {
+    transform: translate(-2%, -1%) scale(1);
+  }
+  to {
+    transform: translate(2%, 2%) scale(1.05);
+  }
+}
+
+/* TABLETS */
+
+@media (max-width: 1100px) {
+  .lunar-garden__letters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lunar-garden__intro {
+    top: 68px;
+  }
+}
+
+/* CELULARES */
+
+@media (max-width: 680px) {
+  .lunar-garden {
+    min-height: 980px;
+  }
+
+  .lunar-garden__intro {
+    top: 54px;
+    text-align: center;
+  }
+
+  .lunar-garden__intro .eyebrow {
+    justify-content: center;
+    font-size: 9px;
+  }
+
+  .lunar-garden__intro h2 {
+    font-size: clamp(55px, 11vw, 76px);
+    margin: 12px 0;
+  }
+
+  .lunar-garden__intro > p:last-child {
+    margin-inline: auto;
+    font-size: 12px;
+  }
+
+  .lunar-garden__legend {
+    bottom: 83px;
+  }
+
+  .lunar-garden__hint {
+    justify-content: center;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: .12em;
+  }
+
+  .garden-seed {
+    min-height: 70px;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .garden-seed__name {
+    font-size: 11px;
+  }
+
+  .garden-seed__number,
+  .garden-seed__arrow {
+    display: none;
+  }
+
+  .lunar-garden__signature {
+    bottom: 30px;
+    white-space: normal;
+    width: calc(100% - 30px);
+    font-size: 8px;
+  }
+}
+
+/* CELULARES PEQUEÑOS */
+
+@media (max-width: 390px) {
+  .lunar-garden__letters {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .garden-seed {
+    min-height: 49px;
+  }
+}
